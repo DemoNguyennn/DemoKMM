@@ -1,7 +1,6 @@
-package com.example.kmmoviedb.api
+package com.example.kmmoviedb.demo.service
 
-import com.example.kmmoviedb.Movie
-import com.example.kmmoviedb.MovieResponse
+import com.example.kmmoviedb.demo.model.MovieResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*

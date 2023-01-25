@@ -1,6 +1,6 @@
 @file:Suppress("PLUGIN_IS_NOT_ENABLED")
 
-package com.example.kmmoviedb
+package com.example.kmmoviedb.demo.model
 
 import io.ktor.client.*
 import io.ktor.client.call.*
