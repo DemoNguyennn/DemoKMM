@@ -13,12 +13,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.kmmoviedb.android.composable.Slogan
 import com.example.kmmoviedb.demo.model.Movie
 import com.example.kmmoviedb.demo.service.MovieData
 import kotlinx.coroutines.runBlocking
@@ -27,20 +30,21 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
+            MyApplicationTheme(darkTheme = true) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Movies()
+                    MoviesScreen()
                 }
             }
         }
     }
 }
 
+@OptIn(ExperimentalTextApi::class)
 @Composable
-private fun Movies(){
+private fun MoviesScreen() {
     val items = remember { mutableStateListOf<Movie>() }
     runBlocking {
         MovieData().getTopRatedMovies().apply {
@@ -48,14 +52,17 @@ private fun Movies(){
         }
     }
 
+    Column(modifier = Modifier, verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Slogan(modifier = Modifier.align(CenterHorizontally))
 
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(all = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        items(items.toList()) {
-            MovieItem(it)
+        LazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(all = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(items.toList()) {
+                MovieItem(it)
+            }
         }
     }
 }
