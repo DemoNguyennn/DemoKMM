@@ -8,7 +8,7 @@ import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 
-class MovieData {
+class MovieRepo {
     private val httpClient = HttpClient {
         install(ContentNegotiation) {
             json()
